@@ -6,7 +6,7 @@ class Post extends Model {};
 
 Post.init(
     {
-        id: {
+        post_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -23,13 +23,6 @@ Post.init(
         date: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        comment_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                key: 'id',
-                model: 'comment'
-            }
         },
         user_id: {
             type: DataTypes.INTEGER,
