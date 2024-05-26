@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment } = require('../../models');
+const { User, Post } = require('../../models');
 
 // The `/api/user` endpoint
 
@@ -18,9 +18,9 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   // find one user by id
-  // includes associated posts and comments
+  // includes associated posts
   try {
-    const userData = await User.findbyPk({
+    const userData = await User.findbyPk(req.params.id, {
         include: [{ model: Post }],
       });
 
@@ -44,3 +44,5 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+module.exports = router;

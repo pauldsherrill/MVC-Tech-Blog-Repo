@@ -8,7 +8,9 @@ router.get('/', async (req, res) => {
   // includes associated post 
   try {
     const commentData = await Comment.findAll({
-      include: [{ model: Post }],
+      include: [
+        { model: Post }
+      ],
     });
     res.status(200).json(commentData);
   } catch (err) {
@@ -20,7 +22,7 @@ router.get('/:id', async (req, res) => {
   // find one comment by id
   // includes associated post
   try {
-    const commentData = await Comment.findbyPk({
+    const commentData = await Comment.findbyPk(req.params.id, {
         include: [{ model: Post }],
       });
 
@@ -44,3 +46,5 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+module.exports = router;
