@@ -8,7 +8,7 @@ router.get("/", withAuth, async (req, res) => {
   try {
     const userData = await User.findAll();
     const postData = await Post.findAll();
-    const commentData = await Comment.findAll({
+    const commentData = await Comment.findByPk({
       where: {
         post_id: req.body.post_id,
       },
@@ -23,6 +23,7 @@ router.get("/", withAuth, async (req, res) => {
       post,
       comment,
       user,
+      isHome: true,
     });
   } catch (err) {
     res.status(500).json(err);

@@ -30,4 +30,4 @@ const registerFormHandler = async (event) => {
 
 document
   .querySelector(".register-btn")
-  .addEventListener("submit", registerFormHandler);
+  .addEventListener("click", registerFormHandler);

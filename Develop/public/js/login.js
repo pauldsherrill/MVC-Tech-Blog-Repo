@@ -13,6 +13,7 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       document.location.replace("/");
+      console.log("logged in");
     } else {
       alert("Incorrect email or password. Please try again!");
     }
@@ -21,4 +22,4 @@ const loginFormHandler = async (event) => {
 
 document
   .querySelector(".login-btn")
-  .addEventListener("submit", loginFormHandler);
+  .addEventListener("click", loginFormHandler);

@@ -1,21 +1,25 @@
-<form>
-  <div class="form-group">
-    <label for="email-login">Email address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email-login"
-      aria-describedby="emailHelp"
-    />
-    <small id="emailHelp" class="form-text text-muted">We'll never share your
-      email with anyone else.</small>
+<div class="card mt-5 center-card border-0">
+  <div class="card-body col-md-6">
+    <form class="form login-form">
+      <div class="form-group">
+        <label for="email-login">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email-login"
+          aria-describedby="emailHelp"
+        />
+        <small id="emailHelp" class="form-text text-muted">We'll never share
+          your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="password-login">Password</label>
+        <input type="password" class="form-control" id="password-login" />
+      </div>
+      <button type="click" class="btn btn-primary login-btn">Login</button>
+    </form>
+    <a href="/register">Sign Up Instead</a>
   </div>
-  <div class="form-group">
-    <label for="password-login">Password</label>
-    <input type="password" class="form-control" id="password-login" />
-  </div>
-  <button type="submit" class="btn btn-primary login-btn">Login</button>
-  <a href="/register" class="btn btn-warning apply-background">Sign Up Instead</a>
-</form>
+</div>
 
 <script src="/js/login.js"></script>
