@@ -1,16 +1,19 @@
 {
-  "name": "develop",
+  "name": "bootcamp-banking",
   "version": "1.0.0",
-  "main": "server.js",
+  "description": "Challenge 14: Model-View-Controller (MVC)",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "watch": "nodemon server.js",
     "seed": "node seeds/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
@@ -24,6 +27,5 @@
     "eslint-config-prettier": "^9.1.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5"
-  },
-  "description": ""
+  }
 }
