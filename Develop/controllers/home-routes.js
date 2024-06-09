@@ -1,10 +1,8 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
-// Import the custom middleware
-const withAuth = require("../utils/auth");
 
 // GET all galleries for homepage
-router.get("/", withAuth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     // const userData = await User.findAll();
     const postData = await Post.findAll();
@@ -26,6 +24,7 @@ router.get("/", withAuth, async (req, res) => {
     // const comment = commentData ? commentData.get({ plain: true }) : null;
 
     console.log(post);
+    console.log(req.session.logged_in);
 
     res.render("homepage", {
       logged_in: req.session.logged_in,

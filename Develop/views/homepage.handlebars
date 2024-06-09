@@ -1,26 +1,42 @@
 <section>
-  {{#each post}}
-    <div class="card mt-5 center-card border-0">
-      <div class="card-body col-md-9">
-        <div
-          class="card-header border-top border-right border-left border-dark"
-        >
-          {{title}}
-        </div>
-        <div
-          class="card-body border-bottom border-right border-left border-dark"
-        >
-          <blockquote class="blockquote mb-0">
-            <p>{{text}}</p>
-            <footer class="blockquote-footer">Posted by
-              {{!-- {{user.username}} --}}
-              on
-              {{createdAt}}</footer>
-          </blockquote>
-        </div>
+
+  <div class="container mt-5 col-md-9">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        {{#each post}}
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{title}}</h5>
+              <p class="card-text">{{text}}</p>
+              <footer class="blockquote-footer">Posted by
+                {{!-- {{user.username}} --}}
+                on
+                {{createdAt}}</footer>
+              {{#if logged_in}}
+                <div class="input-group mt-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Leave a comment here"
+                    aria-label="Recipient's username"
+                    aria-describedby="button-addon2"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      id="button-addon2"
+                    >Comment</button>
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+          </div>
+        {{/each}}
       </div>
     </div>
-  {{/each}}
+  </div>
+
 </section>
 
 {{!-- <div class="card">

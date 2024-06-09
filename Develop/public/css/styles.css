@@ -6,7 +6,7 @@
 }
 
 .with-background {
-  background-image: url("/images/desk.jpg");
+  /* background-image: url("/images/desk.png"); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
