@@ -1,8 +1,33 @@
-{{!-- <section class="container">
-  <h3 class="gallery-name">{{gallery.name}}</h3>
-  <section class="flex-row justify-center">
-    {{#each user.post as |post|}}{{/each}}
-  </section>
-</section> --}}
+<section>
+  {{#each post}}
+    <div class="card mt-5 center-card border-0">
+      <div class="card-body col-md-9">
+        <div
+          class="card-header border-top border-right border-left border-dark"
+        >
+          {{title}}
+        </div>
+        <div
+          class="card-body border-bottom border-right border-left border-dark"
+        >
+          <blockquote class="blockquote mb-0">
+            <p>{{text}}</p>
+            <footer class="blockquote-footer">Posted by
+              {{!-- {{user.username}} --}}
+              on
+              {{createdAt}}</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</section>
 
-<div>Logged in</div>
+{{!-- <div class="card">
+  <div class="card-header">
+    {{user.username}}
+  </div>
+  <div class="card-body">
+    {{comment.text}}
+  </div>
+</div> --}}
