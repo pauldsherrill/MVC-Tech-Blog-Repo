@@ -22,7 +22,7 @@ router.get("/", withAuth, async (req, res) => {
     // });
 
     // const user = userData ? userData.get({ plain: true }) : null;
-    const post = postData ? postData.get({ plain: true }) : null;
+    const post = postData.map((post) => post.get({ plain: true }));
     // const comment = commentData ? commentData.get({ plain: true }) : null;
 
     console.log(post);
@@ -44,7 +44,9 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("login");
+  res.render("login", {
+    isLogin: true,
+  });
 });
 
 router.get("/register", (req, res) => {
