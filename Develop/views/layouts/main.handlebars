@@ -14,7 +14,7 @@
   <body class="with-background">
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">The Tech Blog</a>
+  <a class="navbar-brand" href="/">The Tech Blog</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -22,14 +22,12 @@
   <div class="collapse navbar-collapse justify-content-between" id="navbarNav"> <!-- justify-content-between added -->
     <ul class="navbar-nav">
       <li class="nav-item {{#if isHome}}active{{/if}}">
-        <a class="nav-link" href="/homepage">Home
+        <a class="nav-link" href="/">Home
           <span class="sr-only"></span></a>
       </li>
-      {{#if logged_in}}
-        <li class="nav-item {{#if isDash}}active{{/if}}">
-          <a class="nav-link" href="#">Dashboard</a>
-        </li>
-      {{/if}}
+      <li class="nav-item {{#if isDash}}active{{/if}}">
+        <a class="nav-link" {{#if logged_in}}href="/dashboard"{{/if}}{{#unless logged_in}}href="/login"{{/unless}}>Dashboard</a>
+      </li>
       {{#unless logged_in}}
         <li class="nav-item {{#if isLogin}}active{{/if}}">
           <a class="nav-link" href="/login">Login</a>

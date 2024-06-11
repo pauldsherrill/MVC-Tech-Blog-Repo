@@ -1,0 +1,30 @@
+<div class="card mt-5 center-card border-0">
+  <div class="card-body col-md-6">
+    <h2 class="d-flex justify-content-center mb-5">Edit Post</h2>
+    <form class="form">
+      <div class="d-none" id="post-id">{{post.id}}</div>
+      <div class="form-group">
+        <label for="post-title">Title</label>
+        <input class="form-control" id="post-title" value="{{post.title}}" />
+      </div>
+      <div class="form-group">
+        <label for="post-text">Text</label>
+        <textarea
+          class="form-control"
+          id="post-text"
+          rows="10"
+        >{{post.text}}</textarea>
+      </div>
+      <div class="d-flex justify-content-between mb-5">
+        <button
+          type="click"
+          class="btn btn-success save-btn btn mt-2"
+        >Save</button>
+        <button type="click" class="btn btn-danger delete-btn btn mt-2">Delete
+          Post</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/edit.js"></script>

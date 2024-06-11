@@ -22,7 +22,7 @@ const postData = [
     user_id: 2,
   },
   {
-    title: "RandomUser3",
+    title: "RandomUser3 Post 1",
     text: "This is my first post",
     user_id: 3,
   },

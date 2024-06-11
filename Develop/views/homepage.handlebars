@@ -1,34 +1,47 @@
 <section>
-
   <div class="container mt-5 col-md-9">
     <div class="row justify-content-center">
       <div class="col-md-10">
         {{#each post}}
           <div class="card mb-4">
+            <div class="d-none" id="post-id">{{this.id}}</div>
             <div class="card-body">
               <h5 class="card-title">{{title}}</h5>
               <p class="card-text">{{text}}</p>
-              <footer class="blockquote-footer">Posted by
-                {{!-- {{user.username}} --}}
-                on
-                {{createdAt}}</footer>
-              {{#if logged_in}}
-                <div class="input-group mt-3">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Leave a comment here"
-                    aria-label="Recipient's username"
-                    aria-describedby="button-addon2"
-                  />
-                  <div class="input-group-append">
-                    <button
-                      class="btn btn-outline-secondary"
-                      type="button"
-                      id="button-addon2"
-                    >Comment</button>
-                  </div>
+              <footer class="blockquote-footer">Posted by {{user.username}} on {{format_date createdAt}}</footer>
+              {{#if comments.length}}
+              <footer>
+                <div class="d-flex justify-content-end">
+                  <button class="btn-sm btn-outline-secondary mt-3" type="button" data-toggle="collapse" data-target="#collapseExample{{@index}}" aria-expanded="false" aria-controls="collapseExample{{@index}}">
+                    Comments
+                  </button>
                 </div>
+                  <div class="collapse" id="collapseExample{{@index}}">
+                  {{#each comments}}
+                    <div class="card-sm card-body">
+                      {{text}}<span class="blockquote-footer">{{user.username}} on {{format_date createdAt}}</span>
+                    </div>
+                  {{/each}}
+                  {{#if ../logged_in}}
+                    <div class="input-group mt-3">
+                      <input type="text" class="comment-text form-control" placeholder="Leave a comment here" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+                      <div class="input-group-append">
+                        <button class="comment-btn btn-sm btn-outline-secondary" type="button" id="button-addon2">Comment</button>
+                      </div>
+                    </div>
+                  {{/if}}
+                  </div>
+              </footer>
+              {{/if}}
+              {{#if ../logged_in}}
+              {{#unless comments.length}}
+              <div class="input-group mt-3">
+                      <input type="text" class="comment-text form-control" placeholder="Leave a comment here" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+                      <div class="input-group-append">
+                        <button class="comment-btn btn-sm btn-outline-secondary" type="button" id="button-addon2">Comment</button>
+                      </div>
+                    </div>
+              {{/unless}}
               {{/if}}
             </div>
           </div>
@@ -36,14 +49,6 @@
       </div>
     </div>
   </div>
-
 </section>
 
-{{!-- <div class="card">
-  <div class="card-header">
-    {{user.username}}
-  </div>
-  <div class="card-body">
-    {{comment.text}}
-  </div>
-</div> --}}
+<script src="/js/comment.js"></script>

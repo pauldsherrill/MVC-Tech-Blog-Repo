@@ -1,0 +1,101 @@
+<section>
+  <div class="container mt-5 col-md-9">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="d-flex justify-content-center mb-5">
+          <a
+            class="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+            href="/post"
+          >Create New Post</a>
+        </div>
+        {{#each posts}}
+          <div class="card mb-4">
+            <div class="d-none" id="post-id">{{this.id}}</div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title">{{title}}</h5>
+                <a
+                  class="btn-sm btn-outline-secondary edit"
+                  type="button"
+                  id="button-addon2"
+                  href="/edit/{{id}}"
+                >
+                  Edit
+                </a>
+              </div>
+              <p class="card-text">{{text}}</p>
+              <footer class="blockquote-footer">Posted by
+                {{user.username}}
+                on
+                {{format_date createdAt}}</footer>
+              {{#if comments.length}}
+                <footer>
+                  <div class="d-flex justify-content-end">
+                    <button
+                      class="btn-sm btn-outline-secondary mt-3"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseExample{{@index}}"
+                      aria-expanded="false"
+                      aria-controls="collapseExample{{@index}}"
+                    >
+                      Comments
+                    </button>
+                  </div>
+                  <div class="collapse" id="collapseExample{{@index}}">
+                    {{#each comments}}
+                      <div class="card-sm card-body">
+                        {{text}}<span
+                          class="blockquote-footer"
+                        >{{user.username}} on {{format_date createdAt}}</span>
+                      </div>
+                    {{/each}}
+                    <div class="input-group mt-3">
+                      <input
+                        type="text"
+                        class="comment-text form-control"
+                        placeholder="Leave a comment here"
+                        aria-label="Recipient's username"
+                        aria-describedby="button-addon2"
+                      />
+                      <div class="input-group-append">
+                        <button
+                          class="comment-btn btn-sm btn-outline-secondary"
+                          type="button"
+                          id="button-addon2"
+                        >Comment</button>
+                      </div>
+                    </div>
+                  </div>
+                </footer>
+              {{/if}}
+              {{#unless comments.length}}
+                <div class="input-group mt-3">
+                  <input
+                    type="text"
+                    class="comment-text form-control"
+                    placeholder="Leave a comment here"
+                    aria-label="Recipient's username"
+                    aria-describedby="button-addon2"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="comment-btn btn-sm btn-outline-secondary"
+                      type="button"
+                      id="button-addon2"
+                    >Comment</button>
+                  </div>
+                </div>
+              {{/unless}}
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="/js/comment.js"></script>
+{{! <div>Dash route works</div> }}
