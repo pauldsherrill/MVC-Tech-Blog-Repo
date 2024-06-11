@@ -1,132 +1,49 @@
-# 14 Model-View-Controller (MVC): Tech Blog
+# MVC Tech Blog
 
-## Your Task
+## Description
 
-Writing about tech can be just as important as making it. Developers spend plenty of time creating new applications and debugging existing codebases, but most developers also spend at least some of their time reading and writing about technical concepts, recent advancements, and new technologies. A simple Google search for any concept covered in this course returns thousands of think pieces and tutorials from developers of all skill levels!
+For this assignment, I was tasked with building a full stack blog site, where users can upload their own posts and comment on each other's posts.
 
-Your task this week is to build a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. You’ll build this site completely from scratch and deploy it to Render. Your app will follow the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
+## Installation
 
-## User Story
+For this assignment, I was given no starter code which meant I had to start from scratch so my first ste was installing all the packages and technologies I needed. My next stepw as to create my models and their relationships to each other. To complete this, I made a model for users which contained a username, email , and password, posts which contained a title and text, and comments which just contained text. I then linked my posts and comments models to the user model with a foreign key and linked the comments model to the posts model using a foreign key.
 
-```md
-AS A developer who writes about tech
-I WANT a CMS-style blog site
-SO THAT I can publish articles, blog posts, and my thoughts and opinions
-```
+From there, it was time to create my routes. I started with the user routes which handled a user registering, logging in, and logging out. I then created my home routes which handled navigation of the site and made sure each route rendered the correct page with the correct data each page needed. I then created the routes for creating, updating, and deleting posts as well as the routes for creating a comment.
 
-## Acceptance Criteria
+After that, it was time to create the view using handlebars pages. I started with the main layout which contained the navbar that would be displayed on every page. I then created logic for the navbar which would initiate the routes for each button that was clicked. I made sure to include conditionals that redirected the user if they weren't logged in an displayed the logout button if they were. I then created the login and signup pages that took in user input and passed it to the necessary routes to be run. After that, I created the hompepage and using a for each conditional, displayed every blog post with conditionals that hid the ability to comment if a user was not logged in. From there, I created the dashboard which displayed only that specific user's posts and displayed buttons for creating and editing posts. I made sure to add logic to each of these buttons to redirect the user to different pages for creating and editing posts. On the create new post page, I displayed an empty form for the user to fill in for thier new post and added logic to the post button that sent that inputted data to the correct route for creating a new post. I did something similar for the edit post page, but gave default input from that specific post so the user could edit the pre-existing content for that post. I then added a button to save the updates that passed the inputted values to the correct route for updating a post. I also added a delete button that deleted that specific post.
 
-```md
-GIVEN a CMS-style blog site
-WHEN I visit the site for the first time
-THEN I am presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
-WHEN I click on the homepage option
-THEN I am taken to the homepage
-WHEN I click on any other links in the navigation
-THEN I am prompted to either sign up or sign in
-WHEN I choose to sign up
-THEN I am prompted to create a username and password
-WHEN I click on the sign-up button
-THEN my user credentials are saved and I am logged into the site
-WHEN I revisit the site at a later time and choose to sign in
-THEN I am prompted to enter my username and password
-WHEN I am signed in to the site
-THEN I see navigation links for the homepage, the dashboard, and the option to log out
-WHEN I click on the homepage option in the navigation
-THEN I am taken to the homepage and presented with existing blog posts that include the post title and the date created
-WHEN I click on an existing blog post
-THEN I am presented with the post title, contents, post creator’s username, and date created for that post and have the option to leave a comment
-WHEN I enter a comment and click on the submit button while signed in
-THEN the comment is saved and the post is updated to display the comment, the comment creator’s username, and the date created
-WHEN I click on the dashboard option in the navigation
-THEN I am taken to the dashboard and presented with any blog posts I have already created and the option to add a new blog post
-WHEN I click on the button to add a new blog post
-THEN I am prompted to enter both a title and contents for my blog post
-WHEN I click on the button to create a new blog post
-THEN the title and contents of my post are saved and I am taken back to an updated dashboard with my new blog post
-WHEN I click on one of my existing posts in the dashboard
-THEN I am able to delete or update my post and taken back to an updated dashboard
-WHEN I click on the logout option in the navigation
-THEN I am signed out of the site
-WHEN I am idle on the site for more than a set time
-THEN I am able to view posts and comments but I am prompted to log in again before I can add, update, or delete posts
-```
+After all of that was complete, I just needed to add a helper that formatted the dates on the pages and an auth.js to redirect the user to the login page if they weren't logged in.
 
-## Mock-Up
+## Usage
 
-The following animation demonstrates the application functionality:
+To visit my site click
 
-![Animation cycles through signing into the app, clicking on buttons, and updating blog posts.](./Assets/14-mvc-homework-demo-01.gif)
+Once you are there, you will see a login page as well as a navbar to visit the homepage or dashboard. You will also see an option to sign up instead.
 
-## Getting Started
+![login page](./Assets/login.png)
 
-Your application’s folder structure must follow the Model-View-Controller paradigm. You’ll need to use the [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for your Views, use the [pg](https://www.npmjs.com/package/pg) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect to a PostgreSQL database for your Models, and create an Express.js API for your Controllers.
+When that is clicked, you will be redirected to the sign up page where you can create an account with a username, email, and password.
 
-You’ll also need the [dotenv package](https://www.npmjs.com/package/dotenv) to use environment variables, the [bcrypt package](https://www.npmjs.com/package/bcrypt) to hash passwords, and the [express-session](https://www.npmjs.com/package/express-session) and [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) packages to add authentication.
+![sign up page](./Assets/register.png)
 
-**Note**: The [express-session](https://www.npmjs.com/package/express-session) package stores the session data on the client in a cookie. When you are idle on the site for more than a set time, the cookie will expire and you will be required to log in again to start a new session. This is the default behavior and you do not have to do anything to your application other than implement the npm package.
+Once signed up, you will be redirected back to the login page where you can either login or use the navbar to navigate to the homepage or dashboard. If dashboard is clicked, you will be redirected to the login page because you need to be logged in to view that. If home is clicked before logging in, you will see a homepage with all of the existing blog posts with a title, content, who they were created by and when. You will also be able to view the comments under each post.
 
-## Grading Requirements
+![homepage pre-login](./Assets/home.png)
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+Once logged in, you will be able to view the homepage again, this time with the ability to add a comment to a post. You will also see the logout button replace the login button in the navbar and have the ability to naviaget to the dashboard
 
-This Challenge is graded based on the following criteria:
+![homepage](./Assets/homepage.png)
 
-### Technical Acceptance Criteria: 40%
+Once that is clicked, you will see your dashboard with all of your existing posts and a button to create a new post as well as an edit button on each post.
 
-* Satisfies all of the preceding acceptance criteria plus the following:
+![dashboard](./Assets/dashboard.png)
 
-  * Application’s folder structure follows the Model-View-Controller paradigm.
+When you click on Create New Post, you will b etaken to a form where you can enter a title and text for a new post and a button to post it.
 
-  * Uses the [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for your Views.
+![create new post](./Assets/create.png)
 
-  * Application must be deployed to Render.
+When that button is clicked, you will be redirected back to your dashboard with the newly created post. When the edit button on a post is clicked, you will be taken to a similar form that contains the pre-existing content for that post with the ability to edit and save or the option to delete the post entirely. If either of those buttons is clicked, you will be redirected to the dashboard with the changes you made.
 
-### Deployment: 32%
+![edit post](./Assets/edit.png)
 
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 15%
-
-* User experience is intuitive and easy to navigate.
-
-* User interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+Lastly, if either logout is clicked or you are idle on the site for more than 30 minutes, you will be logged out and redirected back to the login page.
